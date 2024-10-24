@@ -91,6 +91,13 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.includes("What is") && query.includes("plus")) {
+    const numbers = query.match(/\d+/g)?.map(Number);
+    if (numbers && numbers.length >= 2) {
+      return numbers.reduce((acc, num) => acc + num, 0).toString();
+    }
+  }
+
   return "";
 }
 
