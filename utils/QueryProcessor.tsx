@@ -17,14 +17,19 @@ export default function QueryProcessor(query: string): string {
     return ( "rmmahmou-313" );
   }
 
-  if (query.toLowerCase().includes("which of the following numbers is the largest:")) {
-    // Extract numbers from the query using a regular expression
+  if (query.includes("What is") && query.toLowerCase().includes("plus")) {
     const numbers = query.match(/\d+/g)?.map(Number);
-    if (numbers) {
-      const largest = Math.max(...numbers);
-      return `The largest number is ${largest}`;
+    if (numbers && numbers.length === 2) {
+      return (numbers[0] + numbers[1]).toString();
     }
-    return "No numbers found in the query";
+  }
+  
+
+  if (query.includes("Which of the following numbers is the largest:")) {
+    const numbers = query.match(/\d+/g)?.map(Number);
+    if (numbers && numbers.length > 0) {
+      return Math.max(...numbers).toString();
+    }
   }
 
   return "";
