@@ -34,4 +34,11 @@ describe("QueryProcessor", () => {
             "rmmahmou-313"
           ));
     });
+
+    test('should return the largest number', () => {
+        const query = "Which of the following numbers is the largest: 81, 98, 3?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("98");
+    });
+    
 });

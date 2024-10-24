@@ -13,9 +13,16 @@ export default function QueryProcessor(query: string): string {
     return ( "rmmahmou" );
   }
 
-  if (query.toLowerCase().includes("What is your name")) {
+  if (query.toLowerCase().includes("What is your name?")) {
     return ( "rmmahmou-313" );
   }
+
+  if (query.toLowerCase().includes("largest")) {
+    const numbers = [81, 98, 3];
+    const largest = Math.max(...numbers);
+    return `The largest number is ${largest}`;
+  }
+
   return "";
 }
 
