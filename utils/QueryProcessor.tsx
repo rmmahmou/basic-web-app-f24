@@ -13,14 +13,18 @@ export default function QueryProcessor(query: string): string {
     return ( "rmmahmou" );
   }
 
-  if (query.toLowerCase().includes("What is your name?")) {
+  if (query.includes("What is your name?")) {
     return ( "rmmahmou-313" );
   }
 
-  if (query.toLowerCase().includes("Which of the following numbers is the largest:")) {
-    const numbers = [81, 98, 3];
-    const largest = Math.max(...numbers);
-    return `The largest number is ${largest}`;
+  if (query.toLowerCase().includes("which of the following numbers is the largest:")) {
+    // Extract numbers from the query using a regular expression
+    const numbers = query.match(/\d+/g)?.map(Number);
+    if (numbers) {
+      const largest = Math.max(...numbers);
+      return `The largest number is ${largest}`;
+    }
+    return "No numbers found in the query";
   }
 
   return "";
