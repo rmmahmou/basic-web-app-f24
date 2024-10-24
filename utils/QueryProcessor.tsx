@@ -62,6 +62,21 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.includes("Which of the following numbers are primes:")) {
+    const numbers = query.match(/\d+/g)?.map(Number);
+    if (numbers && numbers.length > 0) {
+      const isPrime = (num: number) => {
+        if (num <= 1) return false;
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+          if (num % i === 0) return false;
+        }
+        return true;
+      };
+      const result = numbers.filter(isPrime);
+      return result.length > 0 ? result.join(", ") : "None";
+    }
+  }
+
   return "";
 }
 
