@@ -32,6 +32,15 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.includes("what is") && query.includes("multiplied by")) {
+    // Extract numbers using a regular expression
+    const numbers = query.match(/\d+/g)?.map(Number);
+    if (numbers && numbers.length === 2) {
+      const result = numbers[0] * numbers[1];
+      return result.toString();
+    }
+  }
+
   return "";
 }
 
